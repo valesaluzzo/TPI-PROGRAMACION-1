@@ -12,7 +12,6 @@ def menu_principal():
         case 4:
             print("\n¡Gracias por utilizar el sistema! Saliendo...")
 
-
 def ejecutar_consigna_1_parte_a():
     print("\n--- CONSIGNA 1: PARTE A (Conjuntos de Usuarios) ---")
     vec4 = []
@@ -92,7 +91,6 @@ def ejecutar_consigna_1_parte_a():
         if not encontrado_en_1 and not encontrado_en_2:
             vec8.append(vec3[i])
     print(f"Errores externos (En C, pero no en A ni B): {vec8}")
-
 
 def ejecutar_consigna_1_parte_b():
     print("\n--- CONSIGNA 1: PARTE B (Lógica Proposicional) ---")
@@ -196,6 +194,52 @@ def ejecutar_consigna_3_matematica():
             T_elemento_a_elemento[i][j] = M[i][j] * C[i][j]
     for fila in T_elemento_a_elemento:
         print(fila)
+    
+    
+    print("\n=== Producto Matricial Estándar (M . C) ===")
+    T_producto_puro = [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
+    for i in range(filas):
+        for j in range(columnas):
+            suma_producto = 0
+            for k in range(columnas):
+                suma_producto += M[i][k] * C[k][j]
+            T_producto_puro[i][j] = suma_producto
+    for fila in T_producto_puro:
+        print(fila)
+
+    # --- Parte E (8): Simetría ---
+    es_simetrica = True
+    for i in range(filas):
+        for j in range(columnas):
+            if M[i][j] != M_transpuesta[i][j]:
+                es_simetrica = False
+    print(f"\n¿La matriz M es simétrica?: {es_simetrica}")
+
+    # --- Parte E (9): Determinante por Sarrus ---
+    a, b, c = M[0][0], M[0][1], M[0][2]
+    d, e, f = M[1][0], M[1][1], M[1][2]
+    g, h, i = M[2][0], M[2][1], M[2][2]
+    determinante = (a*e*i + b*f*g + c*d*h) - (c*e*g + a*f*h + b*d*i)
+    print(f"Determinante de M (Sarrus): {determinante:.2f}")
+    print(f"¿Es invertible?: {determinante != 0}")
+
+    # --- Parte F (11): Análisis de Extremos ---
+    max_promedio = promedios_funciones[0]
+    peor_funcion = 1
+    for idx in range(1, len(promedios_funciones)):
+        if promedios_funciones[idx] > max_promedio:
+            max_promedio = promedios_funciones[idx]
+            peor_funcion = idx + 1
+
+    min_promedio = promedios_servidores[0]
+    mejor_servidor = 1
+    for idx in range(1, len(promedios_servidores)):
+        if promedios_servidores[idx] < min_promedio:
+            min_promedio = promedios_servidores[idx]
+            mejor_servidor = idx + 1
+
+    print(f"\nFunción con MAYOR costo promedio: Función {peor_funcion}")
+    print(f"Servidor MÁS EFICIENTE: Servidor {mejor_servidor}")
 
 # DATOS INICIALES
 vec1 = [101, 102, 103, 104, 105, 106]  # Plataforma A
