@@ -44,6 +44,54 @@ def ejecutar_consigna_1_parte_a():
         if not encontrado:
             vec5.append(vec2[i])
     print(f"A-1.2 Al menos una plataforma: {vec5}")
+    # Usuarios que utilizan la plataforma pero no presentan errores
+    for i in range(len(vec5)):
+        tiene_error = False
+        for x in vec3:
+            if x == vec5[i]:
+                tiene_error = True
+                break
+        if not tiene_error:
+            vec6.append(vec5[i])
+    print(f"A-1.3 Activos sin errores: {vec6}")
+
+    # Usuarios que utilizan exclusivamente una sola plataforma
+    for i in range(len(vec1)):
+        encontrado_en_2 = False
+        for x in vec2:
+            if x == vec1[i]:
+                encontrado_en_2 = True
+                break
+        if not encontrado_en_2:
+            vec7.append(vec1[i])
+            
+    for i in range(len(vec2)):
+        encontrado_en_1 = False
+        for x in vec1:
+            if x == vec2[i]:
+                encontrado_en_1 = True
+                break
+        if not encontrado_en_1:
+            vec7.append(vec2[i])
+    print(f"A-1.4 Exclusivos de una sola: {vec7}")
+
+    # Usuarios que aparecen en C pero no en A u B
+    for i in range(len(vec3)):
+        encontrado_en_1 = False
+        for x in vec1:
+            if x == vec3[i]:
+                encontrado_en_1 = True
+                break
+        
+        encontrado_en_2 = False
+        for x in vec2:
+            if x == vec3[i]:
+                encontrado_en_2 = True
+                break
+                
+        if not encontrado_en_1 and not encontrado_en_2:
+            vec8.append(vec3[i])
+    print(f"Errores externos (En C, pero no en A ni B): {vec8}")
 
 
 
