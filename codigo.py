@@ -155,7 +155,47 @@ def ejecutar_consigna_1_parte_b():
     print(f"Usuarios Criticos: {criticos}")
     print(f"Usuarios No Criticos: {no_criticos}")
 
+def ejecutar_consigna_3_matematica():
+    print("\n--- CONSIGNA 3: PARTE B (Análisis de Matrices) ---")
+    
+    # --- Parte 3: Tiempos Promedio ---
+    promedios_funciones = []
+    for i in range(filas):
+        suma_fila = 0
+        for j in range(columnas):
+            suma_fila += M[i][j]
+        promedio = suma_fila / columnas
+        promedios_funciones.append(promedio)
+        print(f"Tiempo promedio de la Función {i+1}: {promedio:.2f} ms")
 
+    print("-" * 40)
+
+    promedios_servidores = []
+    for j in range(columnas):
+        suma_columna = 0
+        for i in range(filas):
+            suma_columna += M[i][j]
+        promedio = suma_columna / filas
+        promedios_servidores.append(promedio)
+        print(f"Tiempo promedio en el Servidor {j+1}: {promedio:.2f} ms")
+
+    # --- Parte 4: Matriz Transpuesta ---
+    print("\n=== Matriz Transpuesta M^T ===")
+    M_transpuesta = [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
+    for i in range(filas):
+        for j in range(columnas):
+            M_transpuesta[j][i] = M[i][j]
+    for fila in M_transpuesta:
+        print(fila)
+
+    # --- Parte C (5): Productos Matriciales ---
+    print("\n=== Producto Elemento a Elemento (Hadamard) ===")
+    T_elemento_a_elemento = [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
+    for i in range(filas):
+        for j in range(columnas):
+            T_elemento_a_elemento[i][j] = M[i][j] * C[i][j]
+    for fila in T_elemento_a_elemento:
+        print(fila)
 
 # DATOS INICIALES
 vec1 = [101, 102, 103, 104, 105, 106]  # Plataforma A
