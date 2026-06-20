@@ -94,7 +94,66 @@ def ejecutar_consigna_1_parte_a():
     print(f"Errores externos (En C, pero no en A ni B): {vec8}")
 
 
+def ejecutar_consigna_1_parte_b():
+    print("\n--- CONSIGNA 1: PARTE B (Lógica Proposicional) ---")
+    
+    print("\nTabla de valores de verdad para (p v q) ^ r:")
+    print("p\tq\tr\t(p or q) and r")
+    valores = [True, False]
+    for p_val in valores:
+        for q_val in valores:
+            for r_val in valores:
+                resultado = (p_val or q_val) and r_val
+                print(f"{p_val}\t{q_val}\t{r_val}\t{resultado}")
 
+    # Crear el dataset unificado manualmente sin duplicados
+    dataset = []
+    for x in vec1:
+        encontrado = False
+        for d in dataset:
+            if d == x: encontrado = True; break
+        if not encontrado: dataset.append(x)
+        
+    for x in vec2:
+        encontrado = False
+        for d in dataset:
+            if d == x: encontrado = True; break
+        if not encontrado: dataset.append(x)
+        
+    for x in vec3:
+        encontrado = False
+        for d in dataset:
+            if d == x: encontrado = True; break
+        if not encontrado: dataset.append(x)
+
+    criticos = []
+    no_criticos = []
+
+    for usuario in dataset:
+        # Evaluar pertenencia a P (vec1)
+        pertenece_p = False
+        for x in vec1:
+            if x == usuario: pertenece_p = True; break
+            
+        # Evaluar pertenencia a Q (vec2)
+        pertenece_q = False
+        for x in vec2:
+            if x == usuario: pertenece_q = True; break
+            
+        # Evaluar pertenencia a R (vec3)
+        pertenece_r = False
+        for x in vec3:
+            if x == usuario: pertenece_r = True; break
+
+        # Condición lógica: (p v q) ^ r
+        if (pertenece_p or pertenece_q) and pertenece_r:
+            criticos.append(usuario)
+        else:
+            no_criticos.append(usuario)
+
+    print("\nClasificacion final del Dataset:")
+    print(f"Usuarios Criticos: {criticos}")
+    print(f"Usuarios No Criticos: {no_criticos}")
 
 
 
